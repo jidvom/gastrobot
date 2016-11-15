@@ -107,10 +107,10 @@ function eatTonight(recipientId, text) {
     text = text || "";
     var values = text.split(' ');
     
-    if (values.search("eat")>=0) {
+    if (values.search("eat") >= 0) {
         
         message = {
-        	text: "Do you want a type of food in particular?"
+        	"text": "Do you want a type of food in particular?"
         };
 
         sendMessage(recipientId, message);
