@@ -28,7 +28,9 @@ app.post('/webhook', function (req, res) {
         var event = events[i];
         if (event.message && event.message.text) {
     		if (!kittenMessage(event.sender.id, event.message.text)) {
-        		sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
+    			if(!eatTonight(event.sender.id, event message.text)) {
+        			sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
+    			}
     		}
 		} else if (event.postback) {
     		console.log("Postback received: " + JSON.stringify(event.postback));
@@ -94,6 +96,26 @@ function kittenMessage(recipientId, text) {
             
             return true;
         }
+    }
+    
+    return false;
+    
+};
+
+function eatTonight(recipientId, text) {
+    
+    text = text || "";
+    var values = text.split(' ');
+    
+    if (values.search("eat")>=0) {
+        
+        message = {
+        	text: "Do you want a type of food in particular?"
+        };
+
+        sendMessage(recipientId, message);
+        
+        return true;
     }
     
     return false;
